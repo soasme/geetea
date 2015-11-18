@@ -34,7 +34,7 @@ angular.module("libs.oauth.utils", [])
             },
 
             /*
-             * Generate Url Parameters Object From String.
+             * Generate Url Parameters String from Object.
              */
             generateUrlParameters: function (parameters) {
                 var sortedKeys = Object.keys(parameters);
@@ -52,7 +52,7 @@ angular.module("libs.oauth.utils", [])
             },
 
             /*
-             * Parse Response Parameters String From Object.
+             * Parse Response Parameters String to Object.
              */
             parseResponseParameters: function (response) {
                 if (response.split) {
@@ -66,7 +66,8 @@ angular.module("libs.oauth.utils", [])
                 else {
                     return {};
                 }
-            }
+            },
+
         };
 
     }]);
