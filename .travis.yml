@@ -9,4 +9,4 @@ before_script:
   - npm run update-webdriver
   - sleep 1 # give server time to start
 script:
-  - npm run test-single
+  - node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --browsers=Firefox
