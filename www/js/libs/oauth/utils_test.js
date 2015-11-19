@@ -52,4 +52,14 @@ describe('libs.oauth.utils module', function() {
       expect($OAuthUtils.parseResponseParameters("k=v&v=k")).toEqual({k: 'v', v: 'k'});
     });
   });
+
+  describe('authenticateInNewWindow', function() {
+    it('should open window to start authentication flow', inject(function($window) {
+      spyOn($window, 'open').and.callFake(function() {return {
+        addEventListener: function(event, cb) {}
+      };});
+      $OAuthUtils.authenticateInNewWindow('http://localhost', 'options=blah');
+      expect($window.open).toHaveBeenCalledWith('http://localhost', '_blank', 'options=blah');
+    }));
+  });
 });
