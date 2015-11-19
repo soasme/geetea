@@ -1,6 +1,6 @@
 angular.module("libs.oauth.utils", [])
 
-    .factory("$OAuthUtils", ["$q", function($q) {
+    .factory("$OAuthUtils", ["$q", "$window", function($q, $window) {
 
         return {
 
@@ -67,6 +67,23 @@ angular.module("libs.oauth.utils", [])
                     return {};
                 }
             },
+
+            authenticateInNewWindow: function(url, options) {
+              var df = $q.defer();
+              var browserRef = $window.open(url, '_blank', options);
+
+              browserRef.addEventListener('loadstart', function(event){
+                browserRef.removeEventListener("exit", function(event){});
+                browserRef.close();
+                df.resolve(event);
+              });
+
+              browserRef.addEventListener('exit', function(event) {
+                df.reject(event);
+              });
+
+              return df.promise;
+            }
 
         };
 
