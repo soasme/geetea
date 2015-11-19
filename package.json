@@ -35,6 +35,7 @@
   ],
   "scripts":{
     "test": "./node_modules/karma/bin/karma start karma.conf",
-    "test-single": "./node_modules/karma/bin/karma start karma.conf --single-run"
+    "test-single": "./node_modules/karma/bin/karma start karma.conf --single-run",
+    "update-webdriver": "webdriver-manager update"
   }
 }
