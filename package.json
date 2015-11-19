@@ -20,7 +20,8 @@
     "karma-chrome-launcher": "^0.2.1",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.6",
-    "shelljs": "^0.3.0"
+    "shelljs": "^0.3.0",
+    "http-server": "^0.6.1"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",
@@ -36,6 +37,7 @@
   "scripts":{
     "test": "./node_modules/karma/bin/karma start karma.conf",
     "test-single": "./node_modules/karma/bin/karma start karma.conf --single-run",
-    "update-webdriver": "webdriver-manager update"
+    "update-webdriver": "webdriver-manager update",
+    "start": "http-server -a localhost -p 8000 -c-1"
   }
 }
