@@ -1,5 +1,7 @@
 # Geetea
 
+![](https://travis-ci.org/soasme/geetea.svg?branch=master)
+
 Some quick tips:
 
 * cd into your project: $ cd geetea
