@@ -14,4 +14,19 @@ angular
         '&approval_prompt=force&response_type=token'
       );
     };
+
+    var parseOAuth2Response = function(url) {
+      if (url.split('#').length != 2) {
+        return null;
+      }
+      var parameters = $OAuthUtils.parseResponseParameters(url.split('#')[1]);
+      if (parameters.access_token === undefined || parameters.access_token === null) {
+        return null;
+      }
+      return {
+        accessToken: parameters.access_token,
+        tokenType: parameters.token_type,
+        expiresIn: parseInt(parameters.expires_in)
+      };
+    };
   }]);

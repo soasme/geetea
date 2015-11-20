@@ -23,4 +23,24 @@ describe('libs.oauth.google module', function() {
       );
     })
   });
+
+  describe('parseOAuth2Response', function() {
+    it('should find empty access token and then return empty object', function(){
+      spyOn($OAuthUtils, 'parseResponseParameters').and.returnValue({});
+      expect($googleOAuth.parseOAuth2Response('#')).toEqual(null);
+      expect($googleOAuth.parseOAuth2Response('')).toEqual(null);
+    });
+
+    it('should find access_token and other related fields', function() {
+      spyOn($OAuthUtils, 'parseResponseParameters').and.returnValue({
+        access_token: 'token',
+        token_type: 'type',
+        expires_in: '1'
+      });
+      var parsed = $googleOAuth.parseOAuth2Response('#');
+      expect(parsed.accessToken).toEqual('token');
+      expect(parsed.tokenType).toEqual('type');
+      expect(parsed.expiresIn).toEqual(1);
+    });
+  });
 });
