@@ -54,6 +54,11 @@ angular
 
         $OAuthUtils.browseUntil(authURL, redirectURL).then(
           function(event) {
+            var token = parseOAuth2Response(event.url);
+            if (!token) {
+              reject("Problem authenticating");
+              return;
+            }
           }, function(event) {
             reject("The authentication was canceled");
           }

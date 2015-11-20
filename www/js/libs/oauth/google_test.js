@@ -47,6 +47,18 @@ describe('libs.oauth.google module', function() {
 
   describe('auth', function() {
 
+    it('should be able to reject on parsing error', function() {
+      authDeferred.resolve({
+        url: 'http://localhost/callback', // without any parameters
+      });
+      $googleOAuth.auth('client@google.com', ['email']).then(function(data) {
+        throw data;
+      }, function(data) {
+        expect(data).toEqual('Problem authenticating');
+      });
+      $rootScope.$apply();
+    });
+
     it('should be able to reject on calceling flow', function() {
       authDeferred.reject({});
       $googleOAuth.auth('client@google.com', ['email']).then(function(data) {
