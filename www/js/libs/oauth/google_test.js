@@ -46,6 +46,15 @@ describe('libs.oauth.google module', function() {
 
 
   describe('auth', function() {
+    it('should be able to reject in wrong env', function() {
+      $window.cordova = null;
+      $googleOAuth.auth('client@google.com', ['email']).then(function(data) {
+        throw data;
+      }, function(data) {
+        expect(data).toEqual('App is running in invalid environment');
+      });
+      $rootScope.$apply();
+    });
   });
 
 

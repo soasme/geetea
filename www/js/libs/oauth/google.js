@@ -44,6 +44,10 @@ angular
 
     var auth = function(clientId, appScope, options) {
       return $q(function(resolve, reject) {
+        if (!isAppEnvironmentValid()) {
+          reject("App is running in invalid environment");
+          return;
+        }
       });
     };
     return {
