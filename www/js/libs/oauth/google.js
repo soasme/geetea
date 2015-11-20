@@ -42,5 +42,6 @@ angular
       return redirectURI;
     };
     return {
+      getOAuth2URL: getOAuth2URL,
     };
   }]);
