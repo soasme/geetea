@@ -59,6 +59,7 @@ angular
               reject("Problem authenticating");
               return;
             }
+            resolve(token);
           }, function(event) {
             reject("The authentication was canceled");
           }

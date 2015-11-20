@@ -46,6 +46,19 @@ describe('libs.oauth.google module', function() {
 
 
   describe('auth', function() {
+    it('should fetch access_token', function() {
+      authDeferred.resolve({
+        url: 'http://localhost/callback#access_token=token&token_type=type&expires_in=1'
+      });
+      $googleOAuth.auth('client@google.com', ['email']).then(function(data) {
+        expect(data.accessToken).toEqual('token');
+        expect(data.tokenType).toEqual('type');
+        expect(data.expiresIn).toEqual(1);
+      }, function(data) {
+        throw data;
+      });
+      $rootScope.$apply();
+    });
 
     it('should be able to reject on parsing error', function() {
       authDeferred.resolve({
