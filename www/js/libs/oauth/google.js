@@ -75,6 +75,28 @@ angular
       getRedirectURI: getRedirectURI,
 
       // Exposed Main Function
+     /*
+     * @param {string} clientId
+     * Identifies the client that is making the request. The value passed in this parameter must exactly match the value shown in the Google Developers Console.(including the http or https scheme, case, and trailing '/').
+     *
+     * @param {string} appScope
+     * Identifies the Google API access that your application is requesting.The values passed in this parameter inform the consent screen that is shown to the user.To see the available scopes for all Google APIs, visit https://developers.google.com/apis-explorer/#p/
+     *
+     * @param {object} options
+     * You can customize `redirectURL` in options. It's optional.
+     *
+     * @return {promise}
+     * You can get accessToken/tokenType/expiresIn in success callback, or reason in failure callback.
+     *
+     * @example
+     * $googleOAuth.auth('your-client-id.apps.googleusercontent.com', ['email']).then(
+     *  function(data) {
+     *    console.log(data.accessToken, data.tokenType, data.expiresIn);
+     *  }, function(error_message) {
+     *    console.log(error_message)
+     *  }
+     * )
+     */
       auth: auth
     };
   }]);
