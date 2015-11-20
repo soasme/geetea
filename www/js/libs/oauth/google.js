@@ -45,5 +45,6 @@ angular
       getOAuth2URL: getOAuth2URL,
       parseOAuth2Response: parseOAuth2Response,
       isAppEnvironmentValid: isAppEnvironmentValid,
+      getRedirectURI: getRedirectURI,
     };
   }]);
