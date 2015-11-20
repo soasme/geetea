@@ -56,4 +56,11 @@ describe('libs.oauth.google module', function() {
       expect($googleOAuth.isAppEnvironmentValid()).toBeTruthy();
     });
   });
+
+
+  describe('getRedirectURI', function() {
+    it("should get http://localhost/callback as default uri", function() {
+      expect($googleOAuth.getRedirectURI()).toEqual('http://localhost/callback');
+    });
+  })
 });

@@ -33,4 +33,12 @@ angular
     var isAppEnvironmentValid = function() {
       return $window.cordova !== undefined && $window.cordova !== null;
     };
+
+    var getRedirectURI = function(options) {
+      var redirectURI = "http://localhost/callback";
+      if (options !== undefined && options.hasOwnProperty('redirect_uri')) {
+        redirectURI = options.redirect_uri;
+      }
+      return redirectURI;
+    };
   }]);
