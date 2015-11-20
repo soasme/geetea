@@ -43,5 +43,6 @@ angular
     };
     return {
       getOAuth2URL: getOAuth2URL,
+      parseOAuth2Response: parseOAuth2Response,
     };
   }]);
