@@ -46,6 +46,17 @@ describe('libs.oauth.google module', function() {
 
 
   describe('auth', function() {
+
+    it('should be able to reject on calceling flow', function() {
+      authDeferred.reject({});
+      $googleOAuth.auth('client@google.com', ['email']).then(function(data) {
+        throw data;
+      }, function(data) {
+        expect(data).toEqual('The authentication was canceled');
+      });
+      $rootScope.$apply();
+    });
+
     it('should be able to reject in wrong env', function() {
       $window.cordova = null;
       $googleOAuth.auth('client@google.com', ['email']).then(function(data) {

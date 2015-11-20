@@ -48,6 +48,16 @@ angular
           reject("App is running in invalid environment");
           return;
         }
+
+        var redirectURL = getRedirectURI(options);
+        var authURL = getOAuth2URL(clientId, appScope, redirectURL);
+
+        $OAuthUtils.browseUntil(authURL, redirectURL).then(
+          function(event) {
+          }, function(event) {
+            reject("The authentication was canceled");
+          }
+        )
       });
     };
     return {
