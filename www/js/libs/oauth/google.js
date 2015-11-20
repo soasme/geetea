@@ -16,7 +16,7 @@ angular
     };
 
     var parseOAuth2Response = function(url) {
-      if (url.split('#').length != 2) {
+      if (url.split('#').length !== 2) {
         return null;
       }
       var parameters = $OAuthUtils.parseResponseParameters(url.split('#')[1]);
