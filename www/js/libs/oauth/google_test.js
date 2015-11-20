@@ -45,6 +45,10 @@ describe('libs.oauth.google module', function() {
   });
 
 
+  describe('auth', function() {
+  });
+
+
   describe('isAppEnvironmentValid', function() {
     it("should return false if cordova is not in env", function() {
       $window.cordova = null;
