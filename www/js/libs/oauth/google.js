@@ -66,11 +66,15 @@ angular
         )
       });
     };
+
     return {
+      // Helper functions
       getOAuth2URL: getOAuth2URL,
       parseOAuth2Response: parseOAuth2Response,
       isAppEnvironmentValid: isAppEnvironmentValid,
       getRedirectURI: getRedirectURI,
+
+      // Exposed Main Function
       auth: auth
     };
   }]);
