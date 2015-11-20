@@ -29,4 +29,8 @@ angular
         expiresIn: parseInt(parameters.expires_in)
       };
     };
+
+    var isAppEnvironmentValid = function() {
+      return $window.cordova !== undefined && $window.cordova !== null;
+    };
   }]);

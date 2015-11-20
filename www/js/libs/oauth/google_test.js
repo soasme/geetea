@@ -43,4 +43,17 @@ describe('libs.oauth.google module', function() {
       expect(parsed.expiresIn).toEqual(1);
     });
   });
+
+
+  describe('isAppEnvironmentValid', function() {
+    it("should return false if cordova is not in env", function() {
+      $window.cordova = null;
+      expect($googleOAuth.isAppEnvironmentValid()).toBeFalsy();
+    });
+
+    it("should return true if cordova is in env", function() {
+      $window.cordova = {};
+      expect($googleOAuth.isAppEnvironmentValid()).toBeTruthy();
+    });
+  });
 });
