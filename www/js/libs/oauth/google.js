@@ -41,4 +41,6 @@ angular
       }
       return redirectURI;
     };
+    return {
+    };
   }]);
