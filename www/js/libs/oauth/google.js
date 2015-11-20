@@ -41,10 +41,16 @@ angular
       }
       return redirectURI;
     };
+
+    var auth = function(clientId, appScope, options) {
+      return $q(function(resolve, reject) {
+      });
+    };
     return {
       getOAuth2URL: getOAuth2URL,
       parseOAuth2Response: parseOAuth2Response,
       isAppEnvironmentValid: isAppEnvironmentValid,
       getRedirectURI: getRedirectURI,
+      auth: auth
     };
   }]);
