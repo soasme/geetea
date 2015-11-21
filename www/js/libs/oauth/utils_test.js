@@ -53,13 +53,13 @@ describe('libs.oauth.utils module', function() {
     });
   });
 
-  describe('authenticateInNewWindow', function() {
+  describe('browseUntil', function() {
     it('should open window to start authentication flow', inject(function($window) {
       spyOn($window, 'open').and.callFake(function() {return {
         addEventListener: function(event, cb) {}
       };});
-      $OAuthUtils.authenticateInNewWindow('http://localhost', 'options=blah');
-      expect($window.open).toHaveBeenCalledWith('http://localhost', '_blank', 'options=blah');
+      $OAuthUtils.browseUntil('http://localhost', 'options=blah');
+      expect($window.open).toHaveBeenCalledWith('http://localhost', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
     }));
   });
 });

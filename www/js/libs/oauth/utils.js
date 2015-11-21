@@ -68,21 +68,27 @@ angular.module("libs.oauth.utils", [])
                 }
             },
 
-            authenticateInNewWindow: function(url, options) {
-              var df = $q.defer();
-              var browserRef = $window.open(url, '_blank', options);
+            browseUntil: function(start, end) {
+              return $q(function(resolve, reject) {
+                var options = 'location=no,clearsessioncache=yes,clearcache=yes';
+                var browserRef = $window.open(start, '_blank', options);
 
-              browserRef.addEventListener('loadstart', function(event){
-                browserRef.removeEventListener("exit", function(event){});
-                browserRef.close();
-                df.resolve(event);
+                browserRef.addEventListener('loadstart', onLoadStart);
+                browserRef.addEventListener('exit', onExit);
+
+                function onLoadStart(event) {
+                  if ((event.url).indexOf(end) !== 0) {
+                    return; // Ignore
+                  }
+                  browserRef.removeEventListener("exit", function(event){});
+                  browserRef.close();
+                  resolve(event);
+                }
+
+                function onExit(event) {
+                  reject(event);
+                }
               });
-
-              browserRef.addEventListener('exit', function(event) {
-                df.reject(event);
-              });
-
-              return df.promise;
             }
 
         };

@@ -22,7 +22,8 @@
     "karma-jasmine": "^0.3.6",
     "shelljs": "^0.3.0",
     "protractor": "^2.1.0",
-    "http-server": "^0.6.1"
+    "http-server": "^0.6.1",
+    "cordova": "^5.4.0"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",
