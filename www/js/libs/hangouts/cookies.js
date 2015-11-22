@@ -29,6 +29,18 @@ angular
         });
       });
     };
+
+    var getCookies = function(tokenType, accessToken) {
+      return $q(function(resolve, reject) {
+        var headers = _getHeaders(tokenType, accessToken);
+        _OAuthLogin(headers).then(function(ubertext) {
+        }, function() {
+          reject("get uberauth failed");
+        });
+      });
+    };
+
     return {
+      get: getCookies
     };
   }]);
