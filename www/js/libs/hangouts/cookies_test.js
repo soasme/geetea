@@ -12,7 +12,7 @@ describe('libs.hangouts.cookies module', function() {
 
 
   describe('get', function() {
-    it('should get cookies success', function() {
+    it('should get cookies successfully', function() {
       // mock uberauth api
       $httpBackend.when(
         'GET', 'https://accounts.google.com/accounts/OAuthLogin?source=geetea&issueuberauth=1',
