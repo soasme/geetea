@@ -1,6 +1,6 @@
 angular.module("libs.oauth.utils", [])
 
-    .factory("$OAuthUtils", ["$q", "$window", function($q, $window) {
+    .factory("OAuthUtils", ["$q", "$window", function($q, $window) {
 
         return {
 

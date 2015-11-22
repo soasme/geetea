@@ -1,7 +1,7 @@
 angular
   .module('libs.oauth.google', ['libs.oauth.utils'])
-  .factory('$googleOAuth', ['$window', '$http', '$q', '$OAuthUtils',
-           function($window, $http, $q, $OAuthUtils) {
+  .factory('googleOAuth', ['$window', '$http', '$q', 'OAuthUtils',
+           function($window, $http, $q, OAuthUtils) {
 
     var _getOAuth2URL = function(clientId, appScope, redirectURI) {
       return (
@@ -19,7 +19,7 @@ angular
       if (url.split('#').length !== 2) {
         return null;
       }
-      var parameters = $OAuthUtils.parseResponseParameters(url.split('#')[1]);
+      var parameters = OAuthUtils.parseResponseParameters(url.split('#')[1]);
       if (parameters.access_token === undefined || parameters.access_token === null) {
         return null;
       }
@@ -52,7 +52,7 @@ angular
         var redirectURL = _getRedirectURI(options);
         var authURL = _getOAuth2URL(clientId, appScope, redirectURL);
 
-        $OAuthUtils.browseUntil(authURL, redirectURL).then(
+        OAuthUtils.browseUntil(authURL, redirectURL).then(
           function(event) {
             var token = _parseOAuth2Response(event.url);
             if (!token) {
@@ -89,7 +89,7 @@ angular
      * You can get accessToken/tokenType/expiresIn in success callback, or reason in failure callback.
      *
      * @example
-     * $googleOAuth.auth('your-client-id.apps.googleusercontent.com', ['email']).then(
+     * googleOAuth.auth('your-client-id.apps.googleusercontent.com', ['email']).then(
      *  function(data) {
      *    console.log(data.accessToken, data.tokenType, data.expiresIn);
      *  }, function(error_message) {
