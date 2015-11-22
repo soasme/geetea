@@ -29,5 +29,29 @@ describe('libs.hangouts.cookies module', function() {
       );
       $httpBackend.flush();
   });
+
+  it('should fail when merge session api failed', function() {
+      // mock uberauth api
+      $httpBackend.when(
+        'GET', 'https://accounts.google.com/accounts/OAuthLogin?source=geetea&issueuberauth=1',
+        {'Authorization': 'Bearer e72e16c7e42f292c6912e7710c838347ae178b4a'}
+      ).respond('some.kinda.ubertext');
+      // mock merge session api
+      $httpBackend.when(
+        'GET', 'https://accounts.google.com/MergeSession?service=mail&continue=http://www.google.com&uberauth=some.kinda.ubertext',
+        {'Authorization': 'Bearer e72e16c7e42f292c6912e7710c838347ae178b4a'}
+      ).respond(403, 'forbidden');
+
+      hangoutsCookies.get(
+        'Bearer', 'e72e16c7e42f292c6912e7710c838347ae178b4a'
+      ).then(
+        function(data) {
+          throw data;
+        }, function(reason) {
+          expect(reason).toEqual('merge session failed');
+        }
+      );
+
+      $httpBackend.flush();
   });
 });

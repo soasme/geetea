@@ -34,6 +34,10 @@ angular
       return $q(function(resolve, reject) {
         var headers = _getHeaders(tokenType, accessToken);
         _OAuthLogin(headers).then(function(ubertext) {
+          _mergeSession(ubertext, headers).then(function(cookies) {
+          }, function() {
+            reject("merge session failed");
+          });
         }, function() {
           reject("get uberauth failed");
         });
