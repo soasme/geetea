@@ -35,6 +35,7 @@ angular
         var headers = _getHeaders(tokenType, accessToken);
         _OAuthLogin(headers).then(function(ubertext) {
           _mergeSession(ubertext, headers).then(function(cookies) {
+            resolve(cookies);
           }, function() {
             reject("merge session failed");
           });
