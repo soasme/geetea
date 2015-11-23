@@ -24,6 +24,10 @@ angular
               var cookies = authStorage.get();
               resolve(cookies);
             } else {
+              googleOAuth.auth(clientId, scope).then(function(token) {
+              }, function(reason) {
+                reject(reason);
+              });
             }
           });
         }

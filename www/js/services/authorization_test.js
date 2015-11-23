@@ -25,5 +25,20 @@ describe('services.authorization module', function() {
       });
       $rootScope.$apply();
     });
+
+    it('should reject if google oauth failed', function() {
+      spyOn(authStorage, 'has').and.returnValue(false);
+      spyOn(googleOAuth, 'auth').and.callFake(function() {
+        return $q(function(resolve, reject){ reject('google oauth failed') });
+      });
+
+      authorization.obtain('client@google.com', ['email']).then(function(data) {
+        throw data;
+      }, function(reason) {
+        expect(reason).toEqual('google oauth failed');
+      });
+      $rootScope.$apply();
+    });
+
   });
 });
