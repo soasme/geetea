@@ -25,6 +25,10 @@ angular
               resolve(cookies);
             } else {
               googleOAuth.auth(clientId, scope).then(function(token) {
+                hangoutsCookies.get(token.tokenType, token.accessToken).then(function(cookies) {
+                }, function(reason) {
+                  reject(reason);
+                });
               }, function(reason) {
                 reject(reason);
               });

@@ -40,5 +40,21 @@ describe('services.authorization module', function() {
       $rootScope.$apply();
     });
 
+    it('should reject if get hangouts cookies failed', function() {
+      spyOn(authStorage, 'has').and.returnValue(false);
+      spyOn(googleOAuth, 'auth').and.callFake(function() {
+        return $q(function(resolve){ resolve({}) });
+      });
+      spyOn(hangoutsCookies, 'get').and.callFake(function() {
+        return $q(function(resolve, reject) { reject('get hangouts cookies failed') });
+      })
+
+      authorization.obtain('client@google.com', ['email']).then(function(data) {
+        throw data;
+      }, function(reason) {
+        expect(reason).toEqual('get hangouts cookies failed');
+      });
+      $rootScope.$apply();
+    })
   });
 });
