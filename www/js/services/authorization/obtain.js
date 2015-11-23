@@ -11,19 +11,14 @@
     return function(clientId, scope) {
       return $q(function(resolve, reject) {
         if (authStorage.has()) {
-          var cookies = authStorage.get();
-          resolve(cookies);
+          resolve(authStorage.get());
         } else {
           googleOAuth.auth(clientId, scope).then(function(token) {
             hangoutsCookies.get(token.tokenType, token.accessToken).then(function(cookies) {
               authStorage.set(cookies);
               resolve(cookies);
-            }, function(reason) {
-              reject(reason);
-            });
-          }, function(reason) {
-            reject(reason);
-          });
+            }, reject);
+          }, reject);
         }
       });
     };
