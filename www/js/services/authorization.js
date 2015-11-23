@@ -5,13 +5,13 @@
     .module('services.authorization', [
       'libs.oauth.google',
       'libs.hangouts.cookies',
-      'services.authStorage',
+      'services.authStorage'
     ])
     .factory('authorization', authorization);
 
   authorization.$inject = ['$q', 'googleOAuth', 'authStorage', 'hangoutsCookies'];
 
-  function authorization( $q, googleOAuth, authStorage, hangoutsCookies) {
+  function authorization($q, googleOAuth, authStorage, hangoutsCookies) {
     return {
       obtain: obtain
     };
