@@ -26,6 +26,23 @@ describe('services.authorization module', function() {
       $rootScope.$apply();
     });
 
+    it('should resolve cookies if google respond cookies', function() {
+      spyOn(authStorage, 'has').and.returnValue(false);
+      spyOn(googleOAuth, 'auth').and.callFake(function() {
+        return $q(function(resolve){ resolve({}) });
+      });
+      spyOn(hangoutsCookies, 'get').and.callFake(function() {
+        return $q(function(resolve){ resolve({'session': 'respond!'}) });
+      });
+
+      authorization.obtain('client@google.com', ['email']).then(function(cookies) {
+        expect(cookies.session).toEqual('respond!');
+      }, function(data) {
+        throw data;
+      });
+      $rootScope.$apply();
+    });
+
     it('should reject if google oauth failed', function() {
       spyOn(authStorage, 'has').and.returnValue(false);
       spyOn(googleOAuth, 'auth').and.callFake(function() {
