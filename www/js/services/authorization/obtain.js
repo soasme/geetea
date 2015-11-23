@@ -2,21 +2,13 @@
   'use strict';
 
   angular
-    .module('services.authorization', [
-      'libs.oauth.google',
-      'libs.hangouts.cookies',
-      'services.authStorage'
-    ])
-    .factory('authorization', authorization);
+    .module('services.authorization')
+    .factory('obtain', obtain);
 
-  authorization.$inject = ['$q', 'googleOAuth', 'authStorage', 'hangoutsCookies'];
+  obtain.$inject = ['$q', 'googleOAuth', 'authStorage', 'hangoutsCookies'];
 
-  function authorization($q, googleOAuth, authStorage, hangoutsCookies) {
-    return {
-      obtain: obtain
-    };
-
-    function obtain(clientId, scope) {
+  function obtain($q, googleOAuth, authStorage, hangoutsCookies) {
+    return function(clientId, scope) {
       return $q(function(resolve, reject) {
         if (authStorage.has()) {
           var cookies = authStorage.get();
@@ -34,6 +26,6 @@
           });
         }
       });
-    }
+    };
   }
 })();
