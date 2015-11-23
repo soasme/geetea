@@ -18,5 +18,15 @@ angular
       hangoutsCookies
     ) {
       return {
+        obtain: function(clientId, scope) {
+          return $q(function(resolve, reject) {
+            if (authStorage.has()) {
+              var cookies = authStorage.get();
+              resolve(cookies);
+            } else {
+            }
+          });
+        }
+      };
     }
   ]);
