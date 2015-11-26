@@ -5,8 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
+goog.require('starter.services.Chats');
+goog.require('starter.controllers.DashCtrl');
+goog.require('starter.controllers.ChatsCtrl');
+goog.require('starter.controllers.ChatDetailCtrl');
+goog.require('starter.controllers.AccountCtrl');
+
+angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,7 +28,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 })
-
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
