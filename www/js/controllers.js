@@ -56,3 +56,9 @@ starter.controllers.AccountCtrl = function($scope) {
     enableFriends: true
   };
 };
+
+angular.module('starter.controllers', [])
+  .controller('DashCtrl', starter.controllers.DashCtrl)
+  .controller('ChatsCtrl', starter.controllers.ChatsCtrl)
+  .controller('ChatDetailCtrl', starter.controllers.ChatDetailCtrl)
+  .controller('AccountCtrl', starter.controllers.AccountCtrl);
