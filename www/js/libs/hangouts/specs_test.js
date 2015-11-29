@@ -5,7 +5,7 @@
 
     var hangoutsSpecs;
 
-    beforeEach(module('libs.hangouts.specs'));
+    beforeEach(module('libs.hangouts'));
     beforeEach(inject(function(_hangoutsSpecs_) {
       hangoutsSpecs = _hangoutsSpecs_;
     }));

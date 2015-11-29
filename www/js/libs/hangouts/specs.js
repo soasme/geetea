@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('libs.hangouts.specs', [])
+    .module('libs.hangouts')
     .factory('hangoutsSpecs', hangoutsSpecs);
 
   function hangoutsSpecs() {
