@@ -13,17 +13,19 @@
     "angular": "^1.4.8",
     "angular-mocks": "^1.4.8",
     "bower": "^1.3.3",
+    "cordova": "^5.4.0",
     "gulp-util": "^2.2.14",
+    "http-server": "^0.6.1",
     "jasmine": "^2.3.2",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.15",
     "karma-chrome-launcher": "^0.2.1",
+    "karma-closure": "^0.1.1",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.6",
-    "shelljs": "^0.3.0",
+    "protobufjs": "^4.1.3",
     "protractor": "^2.1.0",
-    "http-server": "^0.6.1",
-    "cordova": "^5.4.0"
+    "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",
@@ -36,7 +38,7 @@
   "cordovaPlatforms": [
     "ios"
   ],
-  "scripts":{
+  "scripts": {
     "test": "./node_modules/karma/bin/karma start karma.conf",
     "test-single": "./node_modules/karma/bin/karma start karma.conf --single-run",
     "update-webdriver": "webdriver-manager update",
