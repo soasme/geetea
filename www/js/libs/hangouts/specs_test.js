@@ -3,12 +3,17 @@
 
   describe('libs.hangouts module, hangoutsSpecs factory', function() {
 
-    var hangoutsSpecs;
+    var hangoutsSpecs, PROTO;
 
-    beforeEach(module('libs.hangouts'));
-    beforeEach(inject(function(_hangoutsSpecs_) {
-      hangoutsSpecs = _hangoutsSpecs_;
-    }));
+    beforeEach(function() {
+      PROTO = '/base/www/js/libs/hangouts/specs.proto';
+      module('libs.hangouts', function($provide) {
+        $provide.constant('HANGOUT_SPECS_PROTO', PROTO);
+      });
+      inject(function(_hangoutsSpecs_) {
+        hangoutsSpecs = _hangoutsSpecs_;
+      })
+    });
 
     describe("proto", function() {
       it("should find proto success", function() {
