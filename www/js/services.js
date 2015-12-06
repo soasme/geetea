@@ -1,6 +1,10 @@
-goog.provide('starter.services.Chats');
+angular.module('starter.services', [])
 
-var chats = [{
+.factory('Chats', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var chats = [{
     id: 0,
     name: 'Ben Sparrow',
     lastText: 'You on your way?',
@@ -27,24 +31,20 @@ var chats = [{
     face: 'img/mike.png'
   }];
 
-
-starter.services.Chats = function() { };
-
-starter.services.Chats.prototype.all = function() {
-  return chats;
-};
-
-starter.services.Chats.prototype.remove = function(chat) {
-  chats.splice(chats.indexOf(chat), 1);
-};
-
-starter.services.Chats.prototype.get = function(chatId) {
-  for (var i = 0; i < chats.length; i++) {
-    if (chats[i].id === parseInt(chatId)) {
-      return chats[i];
+  return {
+    all: function() {
+      return chats;
+    },
+    remove: function(chat) {
+      chats.splice(chats.indexOf(chat), 1);
+    },
+    get: function(chatId) {
+      for (var i = 0; i < chats.length; i++) {
+        if (chats[i].id === parseInt(chatId)) {
+          return chats[i];
+        }
+      }
+      return null;
     }
-  }
-  return null;
-};
-
-angular.module('starter.services', []).service('Chats', starter.services.Chats);
+  };
+});
