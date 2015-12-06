@@ -4,8 +4,7 @@
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.1.1",
     "angular-cookies": "~1.4.8",
-    "google-closure-library": "*",
-    "protobuf": "~5.0.0"
+    "google-closure-library": "*"
   },
   "resolutions": {
     "angular": "1.4.8"
